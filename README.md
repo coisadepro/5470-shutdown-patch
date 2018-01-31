@@ -1,11 +1,7 @@
 # Dell Vostro 5470 Shutdown Patch
 This project is a workaround solution to the Dell Vostro 5470 shutdown problem under macOS.
 
-## This package installs two patches
-- One to /EFI/BOOT/BOOTX64.efi that will run before Clover to shutdown the computer outside macOS environment
-- One to /sbin/shutdown that will run before the original shutdown so that it tells the first patch to shutdown in the EFI environment or to restart
-
-## With these patches installed you’ll be able to
+## With this patc installed you’ll be able to
 - Restart as usual, both from Terminal and from macOS user interface
 - Shutdown as usual, both from Terminal and from macOS user interface
 - Sleep as usual (this patch has nothing to do with sleep, so no changes here)
@@ -13,7 +9,7 @@ This project is a workaround solution to the Dell Vostro 5470 shutdown problem u
 *This patch can be installed multiple times safely (if already installed, it’ll do nothing)*
 
 ## Downloads
-You can download this patch from the releases page
+You can download this patch from the [releases page](https://github.com/coisadepro/5470-shutdown-patch/releases/latest)
 
 ## Updating macOS
 Every time after you update your macOS installation, prior to shutting your computer down, you **MUST install the patch again** by running this installer.
@@ -33,6 +29,11 @@ Even if this patch works great, you should notice that this is some sort of a wo
 - Don’t let the battery drain completely (you should plug your computer to AC when it gets to around 7%. If you can’t do it, shutdown your computer safely and don’t let the battery drain below 7%).
 
 Why should you follow the above piece of advice? Because force shutdown and battery drain power off are both called “unsafe shutdown”. By unsafe I mean that your computer will not execute this patch prior to shutting down. That means that you’ll have to do an EC reset or CMOS reset (as you had to before this patch).
+
+## How it works
+This package installs two patches
+- One to /EFI/BOOT/BOOTX64.efi that will run before Clover to shutdown the computer outside macOS environment
+- One to /sbin/shutdown that will run before the original shutdown so that it tells the first patch to shutdown in the EFI environment or to restart
 
 ## For Developers
 This project was made using the GNU EFI framework and compiled under Ubuntu. Some changes might be needed if you want to use TianoCore.
