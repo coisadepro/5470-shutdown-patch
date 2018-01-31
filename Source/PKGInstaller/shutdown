@@ -1,0 +1,30 @@
+#!/bin/bash
+
+cd /sbin/
+efi_dir=$(sudo bash mount_efi.sh)
+is_restart=0
+while getopts ":r" opt; do
+    case $opt in
+        r)
+            is_restart=1;;
+    esac
+done
+
+cd $efi_dir/EFI
+
+_TRUE=1
+_FALSE=0
+
+if [ $is_restart -eq 1 ]
+then
+    sudo rm .PENDING_SHUTDOWN
+else
+    sudo echo $_TRUE>.PENDING_SHUTDOWN
+fi
+
+if [ $is_restart -eq 1 ]
+then
+    exec /sbin/shutdown.orig "$@"
+else
+    exec /sbin/shutdown.orig -r now
+fi

@@ -1,0 +1,6 @@
+This software is provided to you as FREE SOFTWARE. Do NOT pay for it.
+
+This software is provided on an AS IS basis, with NO implicit or explicit warranty of any kind.
+Installing this patch means that you agree with the above terms.
+
+Source code is available on GitHub.

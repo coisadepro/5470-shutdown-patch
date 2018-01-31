@@ -1,0 +1,1 @@
+<h1>The patch was installed successfully</h1>

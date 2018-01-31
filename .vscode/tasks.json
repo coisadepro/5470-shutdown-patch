@@ -1,0 +1,22 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build-and-run",
+            "type": "shell",
+            "command": "cd \"Source/EFI Patch/\" && clear && sh build-and-run.command",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cd \"Source/EFI Patch/\" && clear && sh build.command",
+            "problemMatcher": []
+        }
+    ]
+}

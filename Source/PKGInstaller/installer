@@ -1,0 +1,65 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+custom_boot_md5="85c124dc14566d1f1549d13ec8817547"
+custom_shutdown_md5="a5c0ae813da83ea21b4ea3849888bc67"
+
+efi_dir=$(sudo bash mount_efi.sh)
+cd $efi_dir/EFI/BOOT
+
+# Install Clover Patch
+if [ -f BOOTX64.efi ]
+then
+    boot_md5=$(md5 -q BOOTX64.efi)
+    if [ "$boot_md5" == "$custom_boot_md5" ]
+    then
+        echo Clover Patch already installed. Skipping...
+    else
+        if [ -f __BOOTX64.efi ]
+        then
+            sudo rm __BOOTX64.efi
+        fi
+        if [ -f _BOOTX64.efi ]
+        then
+            sudo mv _BOOTX64.efi __BOOTX64.efi
+        fi
+        sudo mv BOOTX64.efi _BOOTX64.efi
+        cp $DIR/BOOTX64.efi BOOTX64.efi
+        echo Clover Patch installed successfully
+    fi
+else
+    echo Your EFI installation seems not valid. Please install an updated Clover version.
+fi
+
+cd /sbin/
+
+# Install macOS Shutdown Patch
+if [ -f shutdown ]
+then
+    shutdown_md5=$(md5 -q shutdown)
+    if [ "$shutdown_md5" == "$custom_shutdown_md5" ]
+    then
+        echo Shutdown Patch already installed. Skipping...
+    else
+        if [ -f shutdown.orig.bak ]
+        then
+            sudo rm shutdown.orig.bak
+        fi
+        if [ -f shutdown.orig ]
+        then
+            sudo mv shutdown.orig shutdown.orig.bak
+        fi
+        sudo mv shutdown shutdown.orig
+        sudo cp $DIR/shutdown /sbin/shutdown
+        sudo chmod +x /sbin/shutdown
+        sudo cp $DIR/mount_efi.sh /sbin/mount_efi.sh
+        sudo chmod -x /sbin/mount_efi.sh
+        echo Shutdown Patch installed successfully
+    fi
+else
+    echo Your macOS installation seems not valid. Could not find /sbin/shutdown. Are you on macOS 10.12+?
+fi
+
+sleep 5s
+sudo diskutil umount $efi_dir
+echo Shutdown Patch installer finished
