@@ -16,7 +16,7 @@ This project is a workaround solution to the Dell Vostro 5470 shutdown problem u
 You can download this patch from the releases page
 
 ## Updating macOS
-Every time after you update your macOS installation, prior to shutting your computer down, you *MUST install the patch again* by running this installer.
+Every time after you update your macOS installation, prior to shutting your computer down, you **MUST install the patch again** by running this installer.
 
 If you try to shutdown after an update without running this installer, you might have to do an EC reset or CMOS reset (as you had to before this patch). That’s because some macOS updates might overwrite this patch.
 
@@ -24,8 +24,8 @@ If you try to shutdown after an update without running this installer, you might
 Also, you should run this patch again if you update Clover, as it’s going to overwrite this patch.
 
 ## Requirements
-- To install this patch you MUST have *SIP (System Integrity Protection) off*. If you don’t have it, just take a look at tonymacx86. There are plenty of guides there.
-- This patch is intended to *Sierra (macOS 10.12) and above*. I don’t recommend trying this patch on OSX versions prior to Sierra.
+- To install this patch you MUST have **SIP (System Integrity Protection) off**. If you don’t have it, just take a look at tonymacx86. There are plenty of guides there.
+- This patch is intended to **Sierra (macOS 10.12) and above**. I don’t recommend trying this patch on OSX versions prior to Sierra.
 
 ## Helpful advices
 Even if this patch works great, you should notice that this is some sort of a workaround. This isn’t a real fix. But, don’t worry. You should only pay attention to two things:
