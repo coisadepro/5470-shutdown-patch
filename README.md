@@ -1,7 +1,7 @@
 # Dell Vostro 5470 Shutdown Patch
 This project is a workaround solution to the Dell Vostro 5470 shutdown problem under macOS.
 
-## With this patc installed you’ll be able to
+## With this patch installed you’ll be able to
 - Restart as usual, both from Terminal and from macOS user interface
 - Shutdown as usual, both from Terminal and from macOS user interface
 - Sleep as usual (this patch has nothing to do with sleep, so no changes here)
